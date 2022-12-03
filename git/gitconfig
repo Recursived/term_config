@@ -1,0 +1,32 @@
+[user]
+	email = alex.m94430@gmail.com
+	name = Alexandre MANETA
+[ui "color"]
+		ui = always 
+[color]
+		ui = true
+[core]
+		autocrlf = input
+		safecrlf = true
+[merge]
+		tool = nvim -d
+
+[alias]
+		c = commit
+		s = status
+		lg = log --online
+		last = log -1 HEAD
+[pull]
+		ff = only
+[push]
+		default = simple
+[help]
+		autocorrect = 1
+[github]
+		user = Recursived
+[diff]
+		algorithm = patience
+		compactionHeuristic = true
+[protocol]
+		version = 2
+
