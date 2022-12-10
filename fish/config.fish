@@ -16,7 +16,8 @@ if command -v z > /dev/null
     abbr -a cd "z"
 end
 
-
+# aliasing some command to make it easier to access
+alias fd="fdfind"
 
 # Generated for envman. Do not edit.
 test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
