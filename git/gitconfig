@@ -14,7 +14,7 @@
 [alias]
 		c = commit
 		s = status
-		lg = log --online
+		lg = log --oneline
 		last = log -1 HEAD
 [pull]
 		ff = only
