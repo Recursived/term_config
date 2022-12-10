@@ -49,36 +49,9 @@ Plug 'josa42/vim-lightline-coc'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
+
 " Semantic language support
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/lsp_extensions.nvim'
-"Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
-"Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
-"Plug 'hrsh7th/cmp-path', {'branch': 'main'}
-"Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
-"Plug 'ray-x/lsp_signature.nvim'
-"
-"" Only because nvim-cmp _requires_ snippets
-"Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
-"Plug 'hrsh7th/vim-vsnip'
-
-" Syntactic language support
-"Plug 'cespare/vim-toml'
-"Plug 'stephpy/vim-yaml'
-"Plug 'rust-lang/rust.vim'
-"Plug 'rhysd/vim-clang-format'
-
-"Plug 'fatih/vim-go'
-"Plug 'dag/vim-fish'
-"Plug 'godlygeek/tabular'
-"Plug 'plasticboy/vim-markdown'
-
-" Dart/Flutter plugins
-"Plug 'dart-lang/dart-vim-plugin'
-"Plug 'thosakwe/vim-flutter'
-"Plug 'natebosch/vim-lsc'
-"Plug 'natebosch/vim-lsc-dart'
-
+Plug 'pantharshit00/vim-prisma'
 
 call plug#end()
 
@@ -121,34 +94,22 @@ let g:secure_modelines_allowed_items = [
 
 " Register the components:
 let g:lightline = {}
-let g:lightline.component_expand = {
-  \   'linter_warnings': 'lightline#coc#warnings',
-  \   'linter_errors': 'lightline#coc#errors',
-  \   'linter_info': 'lightline#coc#info',
-  \   'linter_hints': 'lightline#coc#hints',
-  \   'linter_ok': 'lightline#coc#ok',
-  \   'status': 'lightline#coc#status',
-  \ }
 
-" Set color to the components:
-let g:lightline.component_type = {
-  \   'linter_warnings': 'warning',
-  \   'linter_errors': 'error',
-  \   'linter_info': 'info',
-  \   'linter_hints': 'hints',
-  \   'linter_ok': 'left',
-  \ }
-
-" Add the components to the lightline:
-let g:lightline.active = {
+let g:lightline = {
+      \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ],
+      \             [ 'gitbranch','readonly', 'filename', 'modified' ],
       \		    [  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], 
       \	            [ 'coc_status'  ]
       \		  ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileencoding', 'filetype' ] ],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightlineFilename'
+      \ },
       \ }
 
 
@@ -156,6 +117,7 @@ function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
 
+call lightline#coc#register()
 
 " Open hotkeys
 map <C-p> :Files<CR>
